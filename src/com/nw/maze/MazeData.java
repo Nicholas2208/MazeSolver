@@ -9,9 +9,11 @@ public class MazeData {
 	
 	private int N, M;
 	private int entranceX, entranceY;
+	private int exitX, exitY;
 	private char[][] maze;
 	public boolean[][] path;
 	public boolean[][] visited;
+	public boolean[][] result;
 	public static final char WALL ='#';
 	public static final char ROAD = ' ';
 	
@@ -28,6 +30,10 @@ public class MazeData {
 			maze = new char[N][M];
 			path = new boolean[N][M];
 			visited = new boolean[N][M];
+			result = new boolean[N][M];
+			
+			this.exitX = N - 2;
+			this.exitY = M - 1;
 			
 			for(int i = 0; i < N; i++) {
 				String line = scanner.nextLine();
@@ -50,6 +56,14 @@ public class MazeData {
 	
 	public char getMazeChar(int i, int j) {
 		return maze[i][j];
+	}
+
+	public int getExitX() {
+		return exitX;
+	}
+
+	public int getExitY() {
+		return exitY;
 	}
 
 	public int getEntranceX() {

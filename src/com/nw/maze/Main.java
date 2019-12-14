@@ -22,23 +22,42 @@ public class Main {
 
 	private void run() {
 		LinkedList<Position> queue = new LinkedList<>();
-		Position entrance = new Position(data.getEntranceX(), data.getEntranceY());
+		Position entrance = new Position(data.getEntranceX(), data.getEntranceY(), null);
 		queue.addLast(entrance);
+		
+		boolean isSolved = false;
+		
 		while (!CollectionUtils.isEmpty(queue)) {
 			Position curPos = queue.pop();
 			setData(curPos.x, curPos.y, true);
+			if(curPos.x == data.getExitX() && curPos.y == data.getExitY()) {
+				isSolved = true;
+				findPath(curPos);
+				break;
+			}
 			for (int[] direction : directions) {
 				int newX = curPos.x + direction[0];
 				int newY = curPos.y + direction[1];
 				if (data.inArea(newX, newY) && !data.visited[newX][newY]
 						&& data.getMazeChar(newX, newY) == MazeData.ROAD) {
-					queue.addLast(new Position(newX, newY));
+					queue.addLast(new Position(newX, newY, curPos));
 					data.visited[newX][newY] = true;
 				}
 			}
 		}
 		
+		if(!isSolved) {
+			System.out.println("The maze has NO solution!");
+		}
 		setData(-1, -1, false);
+	}
+
+	private void findPath(Position p) {
+		Position cur = p;
+		while(cur != null) {
+			data.result[cur.x][cur.y] = true;
+			cur = cur.prev;
+		}
 	}
 
 	private void setData(int x, int y, boolean isPath) {
@@ -51,10 +70,12 @@ public class Main {
 
 	private class Position {
 		private int x, y;
+		private Position prev;
 
-		private Position(int x, int y) {
+		private Position(int x, int y, Position prev) {
 			this.x = x;
 			this.y = y;
+			this.prev = prev;
 		}
 	}
 

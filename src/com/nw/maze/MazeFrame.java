@@ -45,6 +45,9 @@ public class MazeFrame  extends JFrame{
 				if(data.path[i][j]) {
 					util.setColor(MazeUtil.Yellow);
 				}
+				if(data.result[i][j]) {
+					util.setColor(MazeUtil.Red);
+				}
 				util.fillRectangle(j * w, i * h, w, h);
 			}
 		}
