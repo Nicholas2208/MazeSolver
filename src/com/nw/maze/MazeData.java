@@ -9,6 +9,7 @@ public class MazeData {
 	
 	private int N, M;
 	private char[][] maze;
+	public static final char WALL ='#';
 	
 	public MazeData(String fileName) {
 		Scanner scanner = null;
@@ -28,9 +29,6 @@ public class MazeData {
 					maze[i][j] = line.charAt(j);
 				}
 			}
-			
-			
-			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -38,6 +36,10 @@ public class MazeData {
 				scanner.close();
 			}
 		}
+	}
+	
+	public char getMazeChar(int i, int j) {
+		return maze[i][j];
 	}
 
 	public int N() {
