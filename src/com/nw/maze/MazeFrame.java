@@ -29,6 +29,7 @@ public class MazeFrame  extends JFrame{
 	
 	public void render(MazeData data) {
 		this.data = data;
+		repaint();
 	}
 	
 	public void paint(MazeUtil util) {
@@ -40,6 +41,9 @@ public class MazeFrame  extends JFrame{
 					util.setColor(MazeUtil.LightBlue);
 				}else {
 					util.setColor(MazeUtil.White);
+				}
+				if(data.path[i][j]) {
+					util.setColor(MazeUtil.Yellow);
 				}
 				util.fillRectangle(j * w, i * h, w, h);
 			}
