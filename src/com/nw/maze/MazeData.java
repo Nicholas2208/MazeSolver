@@ -11,7 +11,9 @@ public class MazeData {
 	private int entranceX, entranceY;
 	private char[][] maze;
 	public boolean[][] path;
+	public boolean[][] visited;
 	public static final char WALL ='#';
+	public static final char ROAD = ' ';
 	
 	public MazeData(String fileName) {
 		Scanner scanner = null;
@@ -25,6 +27,7 @@ public class MazeData {
 			M = Integer.parseInt(nm[1]);
 			maze = new char[N][M];
 			path = new boolean[N][M];
+			visited = new boolean[N][M];
 			
 			for(int i = 0; i < N; i++) {
 				String line = scanner.nextLine();

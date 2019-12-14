@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Double;
 
 public class MazeUtil {
 
@@ -21,6 +20,14 @@ public class MazeUtil {
 	
 	public static MazeUtil getInstance(Graphics g) {
 		return new MazeUtil((Graphics2D) g);
+	}
+	
+	public static void pause(long time) {
+		try {
+			Thread.sleep(time);
+		}catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 	}
 	
 	public void setColor(Color color) {
